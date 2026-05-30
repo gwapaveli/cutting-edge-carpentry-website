@@ -459,11 +459,8 @@ p {
 }
 @media (min-width: 701px) {
   .home-hero {
-    background-image: url("../images/client-work/cutting-edge-carpentry-home-hero-desktop.jpg") !important;
+    background-image: url("../images/client-work/cutting-edge-carpentry-farmhouse-hero-stock-4277.jpg") !important;
     background-position: center 50%;
-  }
-  .home-hero .hero-video {
-    display: none;
   }
 }
 .services-hero .hero-inner {
@@ -632,10 +629,29 @@ p {
   justify-content: flex-start;
 }
 .text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   color: var(--red);
   font-weight: 900;
+  text-decoration: none;
 }
-.text-link:hover { text-decoration: underline; }
+.text-link::after {
+  content: "\2192";
+  display: inline-block;
+  font-size: 0.95em;
+  font-weight: 800;
+  line-height: 1;
+  transform: translateX(0);
+  transition: transform 180ms ease;
+}
+.text-link:hover {
+  text-decoration: none;
+}
+.text-link:hover::after,
+.text-link:focus-visible::after {
+  transform: translateX(4px);
+}
 .bullets,
 .footer-list {
   margin: 0;
@@ -697,6 +713,11 @@ p {
   scroll-behavior: smooth;
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
+  opacity: 1;
+  transition: opacity 180ms ease;
+}
+.work-carousel.is-wrapping .carousel-track {
+  opacity: 0;
 }
 .carousel-track::-webkit-scrollbar { display: none; }
 .carousel-slide {
@@ -731,6 +752,9 @@ p {
   font-weight: 800;
   line-height: 1.28;
   text-shadow: 0 1px 2px rgba(18, 0, 4, 0.5);
+}
+.gallery-carousel .project-caption {
+  display: none;
 }
 .carousel-controls {
   display: flex;
@@ -900,6 +924,11 @@ p {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 18px;
+}
+.proof-grid-two {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  max-width: 860px;
+  margin-inline: auto;
 }
 .proof-item {
   overflow: hidden;
@@ -1326,6 +1355,72 @@ p {
   color: var(--red);
   font-weight: 900;
 }
+.contact-page {
+  min-height: 100dvh;
+  overflow: hidden;
+  background: var(--white);
+}
+.contact-page .contact-hero,
+.contact-page .faq-section,
+.contact-page .map-section,
+.contact-page .site-footer {
+  display: none;
+}
+.contact-page main {
+  height: calc(100dvh - 79px);
+  overflow: hidden;
+}
+.contact-page .contact-form-section {
+  display: flex;
+  height: 100%;
+  padding: 22px 0 0;
+  background: var(--white);
+}
+.contact-page #request-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  margin: 0;
+}
+.contact-page #request-form .section-head {
+  flex: 0 0 auto;
+  max-width: 860px;
+  margin: 0 auto 16px;
+  padding: 0 20px;
+}
+.contact-page #request-form .section-head .eyebrow {
+  margin-bottom: 6px;
+}
+.contact-page #request-form .section-head h2 {
+  font-size: clamp(1.8rem, 3vw, 2.65rem);
+}
+.contact-page #request-form .section-head .lead {
+  max-width: 760px;
+  margin-top: 8px;
+  font-size: 1rem;
+  line-height: 1.45;
+}
+.contact-page .request-frame-card {
+  flex: 1 1 auto;
+  width: 100%;
+  max-width: none;
+  min-height: 0;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  background: var(--white);
+  box-shadow: none;
+}
+.contact-page .request-frame-card iframe {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+}
+.contact-page .request-frame-fallback {
+  display: none;
+}
 .form-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1700,6 +1795,22 @@ textarea {
   .desktop-only {
     display: none;
   }
+  .contact-page main {
+    height: calc(100dvh - 147px);
+  }
+  .contact-page .contact-form-section {
+    padding-top: 14px;
+  }
+  .contact-page #request-form .section-head {
+    margin-bottom: 10px;
+    padding: 0 16px;
+  }
+  .contact-page #request-form .section-head h2 {
+    font-size: 1.55rem;
+  }
+  .contact-page #request-form .section-head .lead {
+    font-size: 0.9rem;
+  }
   .container { width: calc(100% - 28px); }
   .section { padding: 56px 0; }
   .nav-wrap {
@@ -1771,9 +1882,6 @@ textarea {
   .home-hero p {
     max-width: 330px;
     font-size: 1rem;
-  }
-  .home-hero .hero-video {
-    display: block;
   }
   .trust-section {
     padding: 42px 0 52px;

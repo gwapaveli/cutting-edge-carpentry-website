@@ -85,6 +85,18 @@ document.querySelectorAll("[data-carousel]").forEach((carousel) => {
     track.scrollTo({ left: index * getStep(), behavior });
   };
 
+  let wrapTimer;
+  const wrapToPage = (index) => {
+    window.clearTimeout(wrapTimer);
+    carousel.classList.add("is-wrapping");
+    wrapTimer = window.setTimeout(() => {
+      scrollToPage(index, "instant");
+      window.requestAnimationFrame(() => {
+        carousel.classList.remove("is-wrapping");
+      });
+    }, 180);
+  };
+
   const buildDots = () => {
     dotsWrap.innerHTML = "";
     for (let index = 0; index < getPageCount(); index += 1) {
@@ -109,17 +121,21 @@ document.querySelectorAll("[data-carousel]").forEach((carousel) => {
   prev.addEventListener("click", () => {
     const lastPage = getPageCount() - 1;
     const current = getActivePage();
-    const isWrap = current <= 0;
-    const target = isWrap ? lastPage : current - 1;
-    scrollToPage(target, isWrap ? "instant" : "smooth");
+    if (current <= 0) {
+      wrapToPage(lastPage);
+      return;
+    }
+    scrollToPage(current - 1);
   });
 
   next.addEventListener("click", () => {
     const lastPage = getPageCount() - 1;
     const current = getActivePage();
-    const isWrap = current >= lastPage;
-    const target = isWrap ? 0 : current + 1;
-    scrollToPage(target, isWrap ? "instant" : "smooth");
+    if (current >= lastPage) {
+      wrapToPage(0);
+      return;
+    }
+    scrollToPage(current + 1);
   });
 
   track.addEventListener("scroll", () => {
