@@ -2927,6 +2927,11 @@ body .section.cta-band .actions {
     margin-top: 0;
   }
 
+  .trust-item p {
+    width: 100%;
+    max-width: none;
+  }
+
   .home-area-points {
     width: 100%;
     gap: 10px;
@@ -2997,5 +3002,37 @@ body .section.cta-band .actions {
   .services-hero p,
   .inner-hero p {
     width: min(100%, 358px);
+  }
+}
+
+@media (max-width: 1040px) {
+  .menu-toggle {
+    flex: 0 0 48px;
+    width: 48px;
+    min-width: 48px;
+    height: 48px;
+    padding: 0;
+    border-color: var(--red-line);
+    background: var(--white);
+    color: var(--red);
+    font-size: 1.35rem;
+    box-shadow: none;
+  }
+
+  .menu-toggle::after {
+    content: none;
+  }
+
+  .trust-item p {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+@media (max-width: 700px) {
+  .menu-toggle {
+    flex-basis: 48px;
+    min-width: 48px;
+    height: 48px;
   }
 }
