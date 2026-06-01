@@ -383,8 +383,8 @@ p {
   z-index: 1;
   width: 100%;
   background:
-    linear-gradient(180deg, rgba(18, 0, 4, 0.31), rgba(18, 0, 4, 0.44)),
-    linear-gradient(90deg, rgba(18, 0, 4, 0.2), rgba(18, 0, 4, 0.09) 50%, rgba(18, 0, 4, 0.2));
+    linear-gradient(180deg, rgba(18, 0, 4, 0.279), rgba(18, 0, 4, 0.396)),
+    linear-gradient(90deg, rgba(18, 0, 4, 0.18), rgba(18, 0, 4, 0.081) 50%, rgba(18, 0, 4, 0.18));
   pointer-events: none;
 }
 .hero::after {
@@ -393,7 +393,7 @@ p {
   inset: 0;
   z-index: 1;
   width: 100%;
-  background: radial-gradient(ellipse at center, rgba(18, 0, 4, 0.49) 0%, rgba(18, 0, 4, 0.36) 34%, rgba(18, 0, 4, 0.14) 68%, rgba(18, 0, 4, 0) 100%);
+  background: radial-gradient(ellipse at center, rgba(18, 0, 4, 0.441) 0%, rgba(18, 0, 4, 0.324) 34%, rgba(18, 0, 4, 0.126) 68%, rgba(18, 0, 4, 0) 100%);
   pointer-events: none;
 }
 .hero-inner {
@@ -427,7 +427,7 @@ p {
 .hero h1,
 .hero .eyebrow,
 .hero p {
-  text-shadow: 0 3px 18px rgba(18, 0, 4, 0.61), 0 1px 2px rgba(18, 0, 4, 0.43);
+  text-shadow: 0 3px 18px rgba(18, 0, 4, 0.549), 0 1px 2px rgba(18, 0, 4, 0.387);
 }
 .hero p {
   max-width: 760px;
@@ -1863,7 +1863,7 @@ textarea {
   }
   h1 { font-size: clamp(2rem, 10vw, 2.75rem); }
   .hero::after {
-    background: radial-gradient(ellipse at center, rgba(18, 0, 4, 0.58) 0%, rgba(18, 0, 4, 0.43) 42%, rgba(18, 0, 4, 0.15) 78%, rgba(18, 0, 4, 0) 100%);
+    background: radial-gradient(ellipse at center, rgba(18, 0, 4, 0.522) 0%, rgba(18, 0, 4, 0.387) 42%, rgba(18, 0, 4, 0.135) 78%, rgba(18, 0, 4, 0) 100%);
   }
   .home-hero .hero-inner {
     min-height: 460px;
@@ -1926,11 +1926,15 @@ textarea {
     padding: 48px 0;
   }
   .services-hero h1 {
-    font-size: clamp(1.95rem, 8vw, 2.25rem);
+    max-width: 290px;
+    margin-right: auto;
+    margin-left: auto;
+    font-size: clamp(1.55rem, 6.4vw, 1.75rem);
+    line-height: 1.12;
   }
   .services-hero p {
     font-size: 1rem;
-    max-width: 320px;
+    max-width: 290px;
   }
   .inner-hero .hero-inner {
     min-height: 330px;
@@ -1949,6 +1953,13 @@ textarea {
   }
   .services-slider-head {
     max-width: 320px;
+  }
+  .services-slider-head h2 {
+    max-width: 300px;
+    margin-right: auto;
+    margin-left: auto;
+    font-size: clamp(1.55rem, 6.4vw, 1.75rem);
+    line-height: 1.16;
   }
   .services-slider-head .lead {
     max-width: 300px;
