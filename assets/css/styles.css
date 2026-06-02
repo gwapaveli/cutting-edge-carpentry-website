@@ -376,6 +376,9 @@ p {
   transform: translateZ(0);
   will-change: transform;
 }
+.home-hero-video {
+  display: none;
+}
 .hero::before {
   content: "";
   position: absolute;
@@ -461,6 +464,16 @@ p {
   .home-hero {
     background-image: url("../images/client-work/cutting-edge-carpentry-farmhouse-hero-stock-4277.jpg") !important;
     background-position: center 50%;
+  }
+}
+@media (max-width: 700px) {
+  .home-hero-video {
+    display: block;
+  }
+}
+@media (max-width: 700px) and (prefers-reduced-motion: reduce) {
+  .home-hero-video {
+    display: none;
   }
 }
 .services-hero .hero-inner {
