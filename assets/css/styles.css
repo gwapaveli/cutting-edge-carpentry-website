@@ -3140,7 +3140,7 @@ body .section.cta-band .actions {
   }
 
   .home-feature-section .feature-points p {
-    grid-column: 1 / -1;
+    grid-column: 2;
     margin-top: 0;
   }
 
