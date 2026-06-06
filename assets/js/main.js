@@ -2,6 +2,56 @@ const header = document.querySelector(".site-header");
 const toggle = document.querySelector(".menu-toggle");
 const panel = document.querySelector("#mobile-menu");
 const mobileHeaderQuery = window.matchMedia("(max-width: 1040px)");
+const homeHeroVideo = document.querySelector(".home-hero-video");
+const homeHeroVideoQuery = window.matchMedia("(max-width: 700px)");
+const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+const onMediaQueryChange = (query, listener) => {
+  if (typeof query.addEventListener === "function") {
+    query.addEventListener("change", listener);
+  } else if (typeof query.addListener === "function") {
+    query.addListener(listener);
+  }
+};
+
+if (homeHeroVideo) {
+  homeHeroVideo.muted = true;
+  homeHeroVideo.playsInline = true;
+
+  const playHomeHeroVideo = () => {
+    const playPromise = homeHeroVideo.play();
+    if (playPromise && typeof playPromise.catch === "function") {
+      playPromise.catch(() => {});
+    }
+  };
+
+  const syncHomeHeroVideo = () => {
+    if (!homeHeroVideoQuery.matches || reducedMotionQuery.matches) {
+      homeHeroVideo.pause();
+      homeHeroVideo.removeAttribute("src");
+      homeHeroVideo.load();
+      return;
+    }
+
+    if (!homeHeroVideo.getAttribute("src") && homeHeroVideo.dataset.mobileSrc) {
+      homeHeroVideo.setAttribute("src", homeHeroVideo.dataset.mobileSrc);
+      homeHeroVideo.load();
+    }
+
+    if (homeHeroVideo.readyState >= 2) {
+      playHomeHeroVideo();
+    } else {
+      homeHeroVideo.addEventListener("canplay", playHomeHeroVideo, { once: true });
+    }
+  };
+
+  syncHomeHeroVideo();
+  onMediaQueryChange(homeHeroVideoQuery, syncHomeHeroVideo);
+  onMediaQueryChange(reducedMotionQuery, syncHomeHeroVideo);
+
+  document.addEventListener("visibilitychange", () => {
+    if (!document.hidden && homeHeroVideo.paused) syncHomeHeroVideo();
+  });
+}
 
 const closeMobileMenu = () => {
   if (!toggle || !panel) return;
