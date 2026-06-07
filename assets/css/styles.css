@@ -365,6 +365,12 @@ p {
 .contact-hero {
   background-position: center 36%;
 }
+.our-process-hero {
+  background-position: center 52%;
+}
+.covered-porches-hero {
+  background-position: center 64%;
+}
 .hero-video {
   display: block;
   position: absolute;
@@ -1508,6 +1514,13 @@ p {
   margin-bottom: 20px;
   color: var(--text-muted);
 }
+.simple-contact-form {
+  max-width: 720px;
+  margin: 0 auto;
+}
+.simple-contact-form .request-submit {
+  max-width: 320px;
+}
 .request-frame-card {
   overflow: hidden;
   max-width: 1040px;
@@ -2147,6 +2160,12 @@ textarea {
   }
   .contact-page #request-form .section-head .lead {
     font-size: 0.9rem;
+  }
+  .covered-porches-hero {
+    background-position: center center;
+  }
+  .simple-contact-form .request-submit {
+    max-width: none;
   }
   .container { width: calc(100% - 28px); }
   .section { padding: 56px 0; }

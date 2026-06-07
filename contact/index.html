@@ -189,7 +189,7 @@
             <a href="/services/basement-framing/">Basement Framing</a>
             <a href="/services/garages-shops/">Garages &amp; Shops</a>
             <a href="/services/decks/">Decks</a>
-            <a href="/services/porches-covered-decks/">Porches &amp; Covered Decks</a>
+            <a href="/services/covered-porches/">Covered Porches</a>
             <a href="/services/fences/">Fences</a>
             <a href="/services/refinishing/">Refinishing</a>
           </div>
@@ -213,7 +213,7 @@
           <a href="/services/basement-framing/">Basement Framing</a>
           <a href="/services/garages-shops/">Garages &amp; Shops</a>
           <a href="/services/decks/">Decks</a>
-          <a href="/services/porches-covered-decks/">Porches &amp; Covered Decks</a>
+          <a href="/services/covered-porches/">Covered Porches</a>
           <a href="/services/fences/">Fences</a>
           <a href="/services/refinishing/">Refinishing</a>
         </div>
@@ -236,27 +236,51 @@
           <h1 id="contact-title">Contact Cutting Edge Carpentry in London, Ontario</h1>
           <p>Tell us about your carpentry, framing, renovation, or exterior wood project.</p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="#request-form">Start Your Project</a>
+            <a class="btn btn-primary" href="#contact-form">Send Contact Details</a>
             <a class="btn btn-secondary" href="tel:+15199025029">Call (519) 902-5029</a>
           </div>
         </div>
       </div>
     </section>
     <section class="section contact-form-section">
-      <div class="container" id="request-form">
+      <div class="container" id="contact-form">
         <div class="section-head center">
-          <p class="eyebrow">Request form</p>
-          <h2>Tell Us About Your Project</h2>
-          <p class="lead">Send your location, timeline, project details, and photos so Cutting Edge Carpentry can review the work and follow up with next steps.</p>
+          <p class="eyebrow">Contact form</p>
+          <h2>Send a Quick Message</h2>
+          <p class="lead">Share the basics and Cutting Edge Carpentry will follow up about the service you need help with.</p>
         </div>
-        <div class="request-frame-card">
-          <iframe src="https://con-build.replit.app/request" width="100%" height="1280" style="border:none;overflow:hidden;" scrolling="no" title="Cutting Edge Carpentry project request form"></iframe>
-          <div class="request-frame-fallback">
-            <h3>Form not loading?</h3>
-            <p>Open the project request form in a new tab.</p>
-            <a class="text-link" href="https://con-build.replit.app/request" target="_blank" rel="noopener">Open Request Form</a>
+        <!-- Integration point: set data-contact-endpoint to a POST endpoint that accepts fullName, email, phone, and service. Without it, the form opens a prefilled email. -->
+        <form class="form-card simple-contact-form" data-simple-contact-form data-contact-endpoint="" data-fallback-email="cecarpentry22@gmail.com">
+          <div class="form-grid">
+            <label class="full">Full Name
+              <input type="text" name="fullName" autocomplete="name" required>
+            </label>
+            <label>Email
+              <input type="email" name="email" autocomplete="email" required>
+            </label>
+            <label>Phone Number
+              <input type="tel" name="phone" autocomplete="tel" required>
+            </label>
+            <label class="full">Service You Need Help With
+              <select name="service" required>
+                <option value="">Select a service</option>
+                <option>Custom Homes</option>
+                <option>Residential Framing</option>
+                <option>Home Renovations</option>
+                <option>Additions</option>
+                <option>Basement Framing</option>
+                <option>Garages &amp; Shops</option>
+                <option>Decks</option>
+                <option>Covered Porches</option>
+                <option>Fences</option>
+                <option>Refinishing</option>
+                <option>Not Sure Yet</option>
+              </select>
+            </label>
           </div>
-        </div>
+          <button class="btn btn-primary request-submit" type="submit" data-submit-contact>Send Message</button>
+          <p class="form-status" data-form-status aria-live="polite"></p>
+        </form>
       </div>
     </section>
     <section class="section faq-section" aria-labelledby="contact-faq-title">
@@ -336,7 +360,7 @@
           <li><a href="/services/basement-framing/">Basement Framing</a></li>
           <li><a href="/services/garages-shops/">Garages &amp; Shops</a></li>
           <li><a href="/services/decks/">Decks</a></li>
-          <li><a href="/services/porches-covered-decks/">Porches &amp; Covered Decks</a></li>
+          <li><a href="/services/covered-porches/">Covered Porches</a></li>
           <li><a href="/services/fences/">Fences</a></li>
           <li><a href="/services/refinishing/">Refinishing</a></li>
         </ul>

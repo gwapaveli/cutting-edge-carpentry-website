@@ -304,6 +304,86 @@ if (requestForm) {
   });
 }
 
+const simpleContactForm = document.querySelector("[data-simple-contact-form]");
+
+if (simpleContactForm) {
+  const status = simpleContactForm.querySelector("[data-form-status]");
+  const submitButton = simpleContactForm.querySelector("[data-submit-contact]");
+  const submitText = submitButton ? submitButton.textContent : "";
+  const endpoint = (simpleContactForm.dataset.contactEndpoint || "").trim();
+  const fallbackEmail = simpleContactForm.dataset.fallbackEmail || "cecarpentry22@gmail.com";
+
+  const setStatus = (message, type) => {
+    if (!status) return;
+    status.textContent = message || "";
+    status.className = "form-status";
+    if (message) status.classList.add("is-visible", type === "success" ? "is-success" : "is-error");
+  };
+
+  const buildMailto = ({ fullName, email, phone, service }) => {
+    const subject = encodeURIComponent(`Contact request from ${fullName}`);
+    const body = encodeURIComponent([
+      `Full Name: ${fullName}`,
+      `Email: ${email}`,
+      `Phone Number: ${phone}`,
+      `Service You Need Help With: ${service}`,
+    ].join("\n"));
+
+    return `mailto:${fallbackEmail}?subject=${subject}&body=${body}`;
+  };
+
+  simpleContactForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    if (!simpleContactForm.checkValidity()) {
+      simpleContactForm.reportValidity();
+      return;
+    }
+
+    const formData = new FormData(simpleContactForm);
+    const payload = {
+      fullName: String(formData.get("fullName") || "").trim(),
+      email: String(formData.get("email") || "").trim(),
+      phone: String(formData.get("phone") || "").trim(),
+      service: String(formData.get("service") || "").trim(),
+      source: "contact-page",
+    };
+
+    setStatus("", "");
+
+    if (!endpoint) {
+      window.location.href = buildMailto(payload);
+      setStatus("Your email app should open with these details filled in. If it does not, call (519) 902-5029.", "success");
+      return;
+    }
+
+    if (submitButton) {
+      submitButton.disabled = true;
+      submitButton.textContent = "Sending...";
+    }
+
+    try {
+      const response = await fetch(endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok) throw new Error("Submission failed.");
+
+      simpleContactForm.reset();
+      setStatus("Message received. Cutting Edge Carpentry will follow up with you shortly.", "success");
+    } catch (error) {
+      setStatus("Something went wrong while sending the message. Please try again or call (519) 902-5029.", "error");
+    } finally {
+      if (submitButton) {
+        submitButton.disabled = false;
+        submitButton.textContent = submitText;
+      }
+    }
+  });
+}
+
 document.querySelectorAll("[data-carousel]").forEach((carousel) => {
   const track = carousel.querySelector(".carousel-track");
   const slides = Array.from(carousel.querySelectorAll(".carousel-slide"));
