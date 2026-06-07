@@ -2310,7 +2310,7 @@ textarea {
     line-height: 1.5;
   }
   .visual-checklist {
-    width: min(90vw, 430px);
+    width: 100%;
     max-width: none;
     margin: 24px auto 0;
     gap: 12px;
