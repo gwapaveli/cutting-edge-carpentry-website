@@ -1098,6 +1098,15 @@ p {
 .process-support-copy h2 {
   max-width: 720px;
 }
+.process-support-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 28px;
+}
+.process-support-header > div {
+  min-width: 0;
+}
 .process-support-copy .lead {
   margin-top: 18px;
 }
@@ -1105,22 +1114,11 @@ p {
   margin-top: 16px;
   color: var(--text-muted);
 }
-.tradeworks-brand-strip {
-  display: inline-flex;
-  align-items: center;
-  gap: 14px;
-  width: fit-content;
-  max-width: 100%;
-  padding-top: 18px;
-  border-top: 1px solid var(--line);
-  color: var(--text-muted);
-  font-size: 0.9rem;
-  font-weight: 800;
-  text-transform: uppercase;
-}
 .tradeworks-logo {
-  width: min(46vw, 168px);
+  flex: 0 0 auto;
+  width: clamp(54px, 6vw, 72px);
   height: auto;
+  margin-top: 6px;
 }
 .feature-grid {
   display: grid;
