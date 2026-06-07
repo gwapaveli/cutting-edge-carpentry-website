@@ -771,6 +771,24 @@ p {
 .gallery-carousel .project-caption {
   display: none;
 }
+.featured-video-section {
+  background: var(--white);
+}
+.featured-video-frame {
+  overflow: hidden;
+  max-width: 980px;
+  margin: 34px auto 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #000;
+  box-shadow: var(--shadow);
+}
+.featured-work-video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #000;
+}
 .carousel-controls {
   display: flex;
   align-items: center;
@@ -851,6 +869,9 @@ p {
   box-shadow: var(--shadow);
   aspect-ratio: 5 / 4;
   background: var(--white);
+}
+.about-family-photo {
+  object-position: center top;
 }
 .split {
   display: grid;
@@ -1039,8 +1060,39 @@ p {
   border-bottom: 1px solid var(--line);
 }
 .feature-band p { color: var(--text-muted); }
+.cutek-standard-section {
+  background: var(--cream);
+}
 .home-feature-section {
   background: var(--cream);
+}
+.testimonial-empty-state,
+.google-review-placeholder,
+.tradeworks-process-card {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 30px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--white);
+  box-shadow: var(--shadow);
+}
+.testimonial-empty-state h3,
+.google-review-placeholder h3 {
+  color: var(--text);
+}
+.testimonial-empty-state p,
+.google-review-placeholder p {
+  margin-top: 10px;
+}
+.tradeworks-process-card {
+  display: grid;
+  min-height: 260px;
+  place-items: center;
+}
+.tradeworks-logo {
+  width: min(100%, 310px);
+  height: auto;
 }
 .feature-grid {
   display: grid;
@@ -1357,8 +1409,10 @@ p {
 .request-frame-card iframe {
   display: block;
   width: 100%;
-  min-height: 960px;
+  height: 1280px;
+  min-height: 1280px;
   border: 0;
+  overflow: hidden;
 }
 .request-frame-fallback {
   padding: 20px 24px 24px;
@@ -1775,22 +1829,20 @@ textarea {
   height: 340px;
   min-height: 0;
   border: 0;
+  border-top: 1px solid var(--line);
 }
 .map-listing-link {
-  position: absolute;
-  top: 18px;
-  left: 18px;
-  z-index: 2;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   min-height: 42px;
+  margin: 14px 16px;
   padding: 10px 14px;
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--line);
   border-radius: 6px;
   background: var(--white);
   color: #1a73e8;
   font-weight: 900;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
 }
 .site-footer {
   background: var(--white);
@@ -2282,17 +2334,15 @@ textarea {
   .map-card iframe {
     height: 280px;
     min-height: 0;
-    pointer-events: none;
   }
   .map-listing-link {
-    top: 14px;
-    left: 14px;
     min-height: 40px;
     padding: 9px 12px;
     font-size: 0.92rem;
   }
   .request-frame-card iframe {
-    min-height: 1040px;
+    height: 1320px;
+    min-height: 1320px;
   }
   .request-form-card {
     padding: 20px;
