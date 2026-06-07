@@ -1067,8 +1067,7 @@ p {
   background: var(--cream);
 }
 .testimonial-empty-state,
-.google-review-placeholder,
-.tradeworks-process-card {
+.google-review-placeholder {
   max-width: 880px;
   margin: 0 auto;
   padding: 30px;
@@ -1085,13 +1084,42 @@ p {
 .google-review-placeholder p {
   margin-top: 10px;
 }
-.tradeworks-process-card {
+.process-support-section {
+  background: var(--cream);
+}
+.process-support-panel {
   display: grid;
-  min-height: 260px;
-  place-items: center;
+  gap: 28px;
+  max-width: 980px;
+}
+.process-support-copy {
+  max-width: 800px;
+}
+.process-support-copy h2 {
+  max-width: 720px;
+}
+.process-support-copy .lead {
+  margin-top: 18px;
+}
+.process-support-copy p:not(.eyebrow) {
+  margin-top: 16px;
+  color: var(--text-muted);
+}
+.tradeworks-brand-strip {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  width: fit-content;
+  max-width: 100%;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  font-weight: 800;
+  text-transform: uppercase;
 }
 .tradeworks-logo {
-  width: min(100%, 310px);
+  width: min(46vw, 168px);
   height: auto;
 }
 .feature-grid {
@@ -1829,20 +1857,6 @@ textarea {
   height: 340px;
   min-height: 0;
   border: 0;
-  border-top: 1px solid var(--line);
-}
-.map-listing-link {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 42px;
-  margin: 14px 16px;
-  padding: 10px 14px;
-  border: 1px solid var(--line);
-  border-radius: 6px;
-  background: var(--white);
-  color: #1a73e8;
-  font-weight: 900;
 }
 .site-footer {
   background: var(--white);
@@ -2334,11 +2348,6 @@ textarea {
   .map-card iframe {
     height: 280px;
     min-height: 0;
-  }
-  .map-listing-link {
-    min-height: 40px;
-    padding: 9px 12px;
-    font-size: 0.92rem;
   }
   .request-frame-card iframe {
     height: 1320px;
