@@ -1096,16 +1096,18 @@ p {
   max-width: 800px;
 }
 .process-support-copy h2 {
-  max-width: 720px;
+  max-width: 620px;
+  margin-top: 14px;
 }
 .process-support-header {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
-  gap: 28px;
+  gap: 20px;
+  max-width: 720px;
 }
-.process-support-header > div {
-  min-width: 0;
+.process-support-header .eyebrow {
+  margin-bottom: 0;
 }
 .process-support-copy .lead {
   margin-top: 18px;
@@ -2307,7 +2309,8 @@ textarea {
     line-height: 1.5;
   }
   .visual-checklist {
-    max-width: 430px;
+    width: min(90vw, 430px);
+    max-width: none;
     margin: 24px auto 0;
     gap: 12px;
   }
