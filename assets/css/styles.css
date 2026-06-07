@@ -176,9 +176,9 @@ p {
 .desktop-nav {
   display: flex;
   align-items: center;
-  gap: 22px;
+  gap: clamp(12px, 1.4vw, 22px);
   color: #2a2624;
-  font-size: 0.95rem;
+  font-size: clamp(0.86rem, 0.95vw, 0.95rem);
   font-weight: 800;
 }
 .desktop-nav a:hover,
