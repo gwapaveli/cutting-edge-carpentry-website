@@ -2322,6 +2322,10 @@ textarea {
     font-size: 1rem;
     line-height: 1.45;
   }
+  .visual-checklist li:last-child {
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--line);
+  }
   .visual-checklist li::before {
     top: 21px;
     left: 18px;
