@@ -1,7 +1,7 @@
 const header = document.querySelector(".site-header");
 const toggle = document.querySelector(".menu-toggle");
 const panel = document.querySelector("#mobile-menu");
-const mobileHeaderQuery = window.matchMedia("(max-width: 1040px)");
+const mobileHeaderQuery = window.matchMedia("(max-width: 1180px)");
 const homeHeroVideo = document.querySelector(".home-hero-video");
 const homeHeroVideoQuery = window.matchMedia("(max-width: 700px)");
 const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");

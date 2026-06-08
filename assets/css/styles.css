@@ -134,7 +134,7 @@ p {
   align-items: center;
   justify-content: space-between;
   min-height: 78px;
-  gap: 24px;
+  gap: clamp(16px, 1.8vw, 24px);
 }
 .brand {
   display: flex;
@@ -176,10 +176,20 @@ p {
 .desktop-nav {
   display: flex;
   align-items: center;
-  gap: clamp(12px, 1.4vw, 22px);
+  flex: 1 1 auto;
+  flex-wrap: nowrap;
+  justify-content: center;
+  min-width: 0;
+  gap: clamp(10px, 1.05vw, 18px);
   color: #2a2624;
-  font-size: clamp(0.86rem, 0.95vw, 0.95rem);
+  font-size: clamp(0.84rem, 0.88vw, 0.95rem);
   font-weight: 800;
+}
+.desktop-nav > a,
+.nav-dropdown,
+.nav-dropdown-link {
+  flex: 0 0 auto;
+  white-space: nowrap;
 }
 .desktop-nav a:hover,
 .desktop-nav a[aria-current="page"] {
@@ -246,6 +256,7 @@ p {
 .header-actions {
   display: flex;
   align-items: center;
+  flex: 0 0 auto;
   gap: 12px;
   white-space: nowrap;
 }
@@ -253,9 +264,10 @@ p {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  flex: 0 0 auto;
   gap: 11px;
   min-height: 50px;
-  padding: 14px 24px;
+  padding: 14px clamp(20px, 1.65vw, 24px);
   border: 0;
   border-radius: 12px;
   background: var(--red);
@@ -267,6 +279,9 @@ p {
   text-decoration: none;
   box-shadow: none;
   transition: background 180ms ease, transform 180ms ease;
+}
+.phone-link span {
+  white-space: nowrap;
 }
 .phone-link:hover {
   background: var(--red-dark);
@@ -353,6 +368,52 @@ p {
   border-color: var(--red);
   color: var(--red);
   outline: none;
+}
+@media (max-width: 1180px) {
+  .site-header {
+    box-shadow: 0 8px 22px rgba(20, 18, 17, 0.06);
+    transition: transform 240ms ease;
+    will-change: transform;
+  }
+  .site-header.is-hidden {
+    transform: translateY(calc(-100% - 2px));
+    pointer-events: none;
+  }
+  .nav-wrap {
+    min-height: 0;
+    padding: 14px 0;
+  }
+  .brand-logo {
+    width: 124px;
+    max-height: 58px;
+  }
+  .desktop-nav {
+    display: none;
+  }
+  .phone-link {
+    min-height: 46px;
+    padding: 12px 20px;
+    font-size: 1rem;
+  }
+  .menu-toggle {
+    display: inline-grid;
+    place-items: center;
+    flex: 0 0 48px;
+    width: 48px;
+    min-width: 48px;
+    height: 48px;
+    padding: 0;
+    border-color: var(--red-line);
+    background: var(--white);
+    color: var(--red);
+    font-size: 1.35rem;
+    box-shadow: none;
+  }
+}
+@media (max-width: 1180px) and (prefers-reduced-motion: reduce) {
+  .site-header {
+    transition: none;
+  }
 }
 .hero {
   position: relative;
