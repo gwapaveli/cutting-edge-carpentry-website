@@ -417,3 +417,68 @@ document.querySelectorAll(".faq-item").forEach((item) => {
     if (summary) summary.setAttribute("aria-expanded", String(item.open));
   });
 });
+
+(() => {
+  const chatUrl = "https://con-build.replit.app/chat/8375df1b-f495-4766-bdd9-be13da5fe701";
+
+  if (document.querySelector("[data-site-chat-widget]")) return;
+
+  const widget = document.createElement("div");
+  widget.className = "site-chat-widget";
+  widget.setAttribute("data-site-chat-widget", "");
+  widget.innerHTML = `
+    <section class="site-chat-panel" id="site-chat-panel" role="dialog" aria-label="Chat with Cutting Edge Carpentry" hidden>
+      <div class="site-chat-panel-header">
+        <strong>Chat with us</strong>
+        <div class="site-chat-panel-actions">
+          <a href="${chatUrl}" target="_blank" rel="noopener noreferrer" aria-label="Open chat in a new tab" title="Open chat in a new tab">
+            <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M14 5h5v5M10 14 19 5M19 13v6H5V5h6"/></svg>
+          </a>
+          <button type="button" data-site-chat-close aria-label="Close chat">
+            <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></svg>
+          </button>
+        </div>
+      </div>
+      <iframe class="site-chat-frame" title="Cutting Edge Carpentry chat" data-src="${chatUrl}" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+    </section>
+    <button class="site-chat-launcher" type="button" aria-controls="site-chat-panel" aria-expanded="false">
+      <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.6 8.6 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7A8.4 8.4 0 0 1 4 11.5a8.6 8.6 0 0 1 4.7-7.6A8.4 8.4 0 0 1 12.5 3h.5a8.5 8.5 0 0 1 8 8Z"/></svg>
+      <span>Chat with us</span>
+    </button>
+  `;
+
+  document.body.appendChild(widget);
+
+  const launcher = widget.querySelector(".site-chat-launcher");
+  const panel = widget.querySelector(".site-chat-panel");
+  const closeButton = widget.querySelector("[data-site-chat-close]");
+  const frame = widget.querySelector(".site-chat-frame");
+
+  if (!launcher || !panel || !closeButton || !frame) return;
+
+  const setChatOpen = (isOpen, returnFocus = false) => {
+    panel.hidden = !isOpen;
+    launcher.setAttribute("aria-expanded", String(isOpen));
+    widget.classList.toggle("is-open", isOpen);
+
+    if (isOpen) {
+      if (!frame.getAttribute("src")) frame.setAttribute("src", frame.dataset.src || chatUrl);
+      closeButton.focus();
+      return;
+    }
+
+    if (returnFocus) launcher.focus();
+  };
+
+  launcher.addEventListener("click", () => {
+    setChatOpen(panel.hidden);
+  });
+
+  closeButton.addEventListener("click", () => {
+    setChatOpen(false, true);
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && !panel.hidden) setChatOpen(false, true);
+  });
+})();
