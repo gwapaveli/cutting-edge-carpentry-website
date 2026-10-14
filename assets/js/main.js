@@ -357,8 +357,18 @@ document.querySelectorAll("[data-carousel]").forEach((carousel) => {
     }, 180);
   };
 
+  // Long galleries on narrow screens get a "3 / 33" counter instead of dots too small to tap.
+  const usesCounter = () => getPageCount() * 17 > carousel.clientWidth - 170;
+
   const buildDots = () => {
     dotsWrap.innerHTML = "";
+    const counter = usesCounter();
+    dotsWrap.classList.toggle("is-counter", counter);
+    if (counter) {
+      dotsWrap.setAttribute("aria-live", "polite");
+      return;
+    }
+    dotsWrap.removeAttribute("aria-live");
     for (let index = 0; index < getPageCount(); index += 1) {
       const dot = document.createElement("button");
       dot.className = "carousel-dot";
@@ -373,6 +383,10 @@ document.querySelectorAll("[data-carousel]").forEach((carousel) => {
 
   const updateDots = () => {
     const active = getActivePage();
+    if (dotsWrap.classList.contains("is-counter")) {
+      dotsWrap.textContent = `${active + 1} / ${getPageCount()}`;
+      return;
+    }
     dotsWrap.querySelectorAll(".carousel-dot").forEach((dot, index) => {
       dot.classList.toggle("is-active", index === active);
     });
@@ -482,3 +496,139 @@ document.querySelectorAll(".faq-item").forEach((item) => {
     if (event.key === "Escape" && !panel.hidden) setChatOpen(false, true);
   });
 })();
+
+document.querySelectorAll("[data-ba-compare]").forEach((compare) => {
+  const stage = compare.querySelector(".ba-stage");
+  const range = compare.querySelector(".ba-range");
+  const beforeTag = compare.querySelector(".ba-tag-before");
+  const afterTag = compare.querySelector(".ba-tag-after");
+
+  if (!stage || !range) return;
+
+  let introFrame;
+  let introDone = false;
+
+  const setPosition = (value) => {
+    const position = Math.min(100, Math.max(0, value));
+    const rounded = Math.round(position);
+    stage.style.setProperty("--ba-pos", `${position}%`);
+    range.value = String(rounded);
+    range.setAttribute("aria-valuetext", `${rounded}% before photo, ${100 - rounded}% after photo`);
+    if (beforeTag) beforeTag.classList.toggle("is-hidden", position < 14);
+    if (afterTag) afterTag.classList.toggle("is-hidden", position > 86);
+  };
+
+  const stopIntro = () => {
+    introDone = true;
+    window.cancelAnimationFrame(introFrame);
+  };
+
+  const positionFromPointer = (event) => {
+    const rect = stage.getBoundingClientRect();
+    return ((event.clientX - rect.left) / rect.width) * 100;
+  };
+
+  let activePointer = null;
+  let pointerMoved = false;
+
+  // Touch only moves the handle on a horizontal drag or a tap, so vertical scrolling over the photo still scrolls the page.
+  stage.addEventListener("pointerdown", (event) => {
+    if (event.pointerType === "mouse" && event.button !== 0) return;
+    stopIntro();
+    activePointer = event.pointerId;
+    pointerMoved = false;
+    stage.classList.add("is-dragging");
+    stage.setPointerCapture(event.pointerId);
+    if (event.pointerType === "mouse") setPosition(positionFromPointer(event));
+  });
+
+  stage.addEventListener("pointermove", (event) => {
+    if (event.pointerId !== activePointer) return;
+    pointerMoved = true;
+    setPosition(positionFromPointer(event));
+  });
+
+  const endDrag = (event) => {
+    if (event.pointerId !== activePointer) return;
+    if (event.type === "pointerup" && !pointerMoved) setPosition(positionFromPointer(event));
+    activePointer = null;
+    stage.classList.remove("is-dragging");
+  };
+
+  stage.addEventListener("pointerup", endDrag);
+  stage.addEventListener("pointercancel", endDrag);
+
+  range.addEventListener("input", () => {
+    stopIntro();
+    setPosition(Number(range.value));
+  });
+
+  setPosition(Number(range.value) || 50);
+
+  if (reducedMotionQuery.matches || !("IntersectionObserver" in window)) return;
+
+  // One gentle sweep the first time the slider is in view, so it reads as draggable.
+  const playIntro = () => {
+    const stops = [50, 72, 30, 50];
+    const segment = 520;
+    const start = performance.now();
+    const ease = (t) => (t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2);
+
+    const step = (now) => {
+      if (introDone) return;
+      const elapsed = now - start;
+      const index = Math.min(stops.length - 2, Math.floor(elapsed / segment));
+      const t = Math.min(1, (elapsed - index * segment) / segment);
+      setPosition(stops[index] + (stops[index + 1] - stops[index]) * ease(t));
+      if (elapsed < segment * (stops.length - 1)) {
+        introFrame = window.requestAnimationFrame(step);
+      } else {
+        setPosition(50);
+      }
+    };
+
+    introFrame = window.requestAnimationFrame(step);
+  };
+
+  const imagesReady = Promise.all(Array.from(stage.querySelectorAll("img")).map((image) => (
+    image.complete ? Promise.resolve() : new Promise((resolve) => {
+      image.addEventListener("load", resolve, { once: true });
+      image.addEventListener("error", resolve, { once: true });
+    })
+  )));
+
+  const introObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      introObserver.disconnect();
+      imagesReady.then(() => {
+        if (!introDone) window.setTimeout(playIntro, 350);
+      });
+    });
+  }, { threshold: 0.6 });
+
+  introObserver.observe(stage);
+});
+
+const jobsiteClips = document.querySelectorAll("[data-jobsite-clip]");
+
+if (jobsiteClips.length && !reducedMotionQuery.matches && "IntersectionObserver" in window) {
+  const clipObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      const video = entry.target;
+      if (entry.isIntersecting) {
+        const playPromise = video.play();
+        if (playPromise && typeof playPromise.catch === "function") {
+          playPromise.catch(() => {});
+        }
+      } else {
+        video.pause();
+      }
+    });
+  }, { threshold: 0.5 });
+
+  jobsiteClips.forEach((video) => {
+    video.muted = true;
+    clipObserver.observe(video);
+  });
+}
