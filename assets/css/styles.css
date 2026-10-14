@@ -3651,8 +3651,9 @@ body .section.cta-band .actions {
   overflow: hidden;
   aspect-ratio: 3 / 4;
   border-radius: var(--radius);
-  background: #2b2220;
-  box-shadow: 0 26px 60px rgba(18, 0, 4, 0.34);
+  border: 1px solid var(--line);
+  background: var(--cream-2);
+  box-shadow: var(--shadow);
   cursor: ew-resize;
   touch-action: pan-y;
   user-select: none;
@@ -3660,7 +3661,7 @@ body .section.cta-band .actions {
   -webkit-tap-highlight-color: transparent;
 }
 .ba-stage:has(.ba-range:focus-visible) {
-  box-shadow: 0 0 0 3px var(--white), 0 0 0 6px var(--red), 0 26px 60px rgba(18, 0, 4, 0.34);
+  box-shadow: 0 0 0 3px var(--white), 0 0 0 6px var(--red), var(--shadow);
 }
 .ba-img {
   position: absolute;
@@ -3755,42 +3756,8 @@ body .section.cta-band .actions {
   font-weight: 700;
   text-align: center;
 }
-.ba-dark {
-  background: var(--red-deep);
-  color: var(--white);
-}
-.ba-dark h1,
-.ba-dark h2 {
-  color: var(--white);
-}
-.ba-dark .eyebrow {
-  color: #f2c2c9;
-}
-.ba-dark .lead {
-  color: rgba(255, 255, 255, 0.86);
-}
-.ba-dark .ba-caption {
-  color: rgba(255, 255, 255, 0.74);
-}
-.ba-dark .btn-secondary {
-  border-color: var(--white);
-  background: transparent;
-  color: var(--white);
-}
-.ba-dark .btn-secondary:hover {
-  background: var(--white);
-  color: var(--red);
-}
-.btn-light {
-  background: var(--white);
-  color: var(--red);
-  box-shadow: 0 12px 24px rgba(18, 0, 4, 0.22);
-}
-.btn-light:hover {
-  background: var(--cream);
-}
 .ba-hero {
-  padding: 56px 0 72px;
+  padding: 64px 0 40px;
 }
 .ba-hero-grid {
   display: grid;
@@ -3817,12 +3784,9 @@ body .section.cta-band .actions {
   align-self: start;
 }
 .ba-hero h1 {
-  max-width: 13ch;
-  font-family: "Arial Black", Arial, Helvetica, sans-serif;
-  font-size: clamp(2.3rem, 4.4vw, 3.7rem);
-  font-weight: 900;
-  line-height: 1.03;
-  letter-spacing: -0.015em;
+  max-width: 15ch;
+  font-size: clamp(2.1rem, 3.8vw, 3.3rem);
+  text-wrap: balance;
 }
 .ba-hero-copy .lead {
   max-width: 540px;
@@ -3833,19 +3797,19 @@ body .section.cta-band .actions {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   max-width: 560px;
   margin: 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.24);
+  border-top: 1px solid var(--line);
 }
 .ba-facts div {
   padding: 16px 16px 0 0;
 }
 .ba-facts dt {
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--text-muted);
   font-size: 0.88rem;
   font-weight: 700;
 }
 .ba-facts dd {
   margin: 4px 0 0;
-  color: var(--white);
+  color: var(--text);
   font-weight: 900;
   line-height: 1.3;
 }
@@ -3956,6 +3920,11 @@ body .section.cta-band .actions {
   justify-content: center;
   gap: 12px 28px;
   margin-top: 26px;
+}
+.ba-feature {
+  background: var(--cream);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
 }
 .ba-feature-grid {
   display: grid;
@@ -4105,7 +4074,7 @@ body .section.cta-band .actions {
     justify-content: space-between;
     gap: 16px;
     padding: 12px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+    border-bottom: 1px solid var(--line);
   }
   .ba-facts dd {
     margin: 0;
