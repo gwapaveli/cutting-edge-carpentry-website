@@ -1,26 +1,31 @@
-# Off-Site SEO Cleanup Checklist
+# Off-Site SEO Checklist
 
-Manual account work for Cutting Edge Carpentry. These items are not required for the static site rollout, but they should be completed to support the local SEO cleanup.
+Manual account work for Cutting Edge Carpentry that supports the website. Last reviewed 2026-11-19.
 
 ## Google Business Profile
 
-- Verify business name, address, phone, website URL, and service areas.
-- Verify hours match the site/schema: Monday-Friday 8:00 AM-5:00 PM; Saturday and Sunday closed.
-- Confirm primary and secondary categories are accurate for carpentry, construction, framing, decks, fences, and related residential services.
-- Confirm the public review count and rating before adding any rating or review schema to the website.
-- Add or refresh real project photos that match the services promoted on the site.
-- Submit the updated sitemap in Google Search Console and request recrawl for changed priority pages.
-- Request recrawl or removal for old indexed URLs that now redirect, including `/custom-home/`, `/garages_shops/`, `/our_services/`, `/services/custom-cottage-homes/`, and `/services/porches-covered-decks/`.
+Done on 2026-11-19 (through GMB Helper):
 
-## Social And Citations
+- Service areas now match the site's town pages (14): Straffordville, Port Burwell, Aylmer, St. Thomas, Port Stanley, Tillsonburg, Delhi, Simcoe, Port Dover, London, Dorchester, Komoka, Ingersoll, Woodstock. Byron and Lambeth are covered by London.
+- Categories: primary Carpenter; secondary Deck builder, Fence contractor, General contractor, Custom home builder. Google rejected "Home builder" with a server error twice. Retry later.
+- Services: 26, including basement framing and deck and fence refinishing.
+- Links: LinkedIn and an appointment link to /request-free-estimate/ were added.
 
-- Check Facebook for consistent name, address, phone, website, and service-area language.
-- Check YellowPages, BBB, and other local citations for matching name, address, phone, and website.
-- Remove or update any citation that points to old service URLs.
+Still to do:
+
+- Confirm the opening date on the profile. It currently says January 1, 2000.
+- Keep uploading fresh job photos. GMB Helper autopilot had about 3 weeks of photos queued on 2026-11-19.
+- Keep reviews coming. Ask customers to mention what was built and the town.
+- Submit the updated sitemap in Google Search Console and request indexing for the new town pages and the deck guide.
+
+## Social and citations
+
+- Facebook page location shows Ottawa. Change it to Straffordville or the service area, and match the phone and website.
+- Claim or update with the exact same name, address and phone: Houzz, HomeStars, Yelp, Apple Business Connect, Bing Places, BBB (Straffordville), YellowPages, MapQuest, Nextdoor.
 - Keep address formatting consistent: 55737 Main Street, Straffordville, ON.
 
-## Do Not Add Without Verification
+## Do not add without verification
 
-- Do not add aggregate rating schema until the live Google Business Profile rating and review count are verified.
-- Do not add fake reviews, unverifiable certifications, or unconfirmed awards.
-- Do not add postal code or geo coordinates to schema unless confirmed by the owner or a reliable public business source.
+- No aggregate rating schema. Google does not show review stars for a business's own reviews of itself.
+- No fake reviews, unverifiable certifications, or unconfirmed awards. WSIB, insurance and the Ontario Business Awards nomination can be added to the About page once confirmed.
+- No postal code or geo coordinates in schema unless confirmed by the owner.
